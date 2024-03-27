@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="00.MainGame">
+      <UniqueIdentifier>{89bd8f11-ead5-438c-b4aa-c5d3ba9586ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Managers">
+      <UniqueIdentifier>{11cb80c4-4a3a-4c80-93ac-77f3195f66a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.Utils">
+      <UniqueIdentifier>{c2f75e66-c499-44b9-a680-117d0bcd6f96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9999.Comments">
+      <UniqueIdentifier>{ce52dc93-af37-4d51-a5a0-43578e48ed64}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>99.Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>99.Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>99.Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowsAPI.h">
+      <Filter>00.MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>99.Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Defines.h">
+      <Filter>99.Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Types.h">
+      <Filter>99.Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonFunction.h">
+      <Filter>99.Utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="WindowsAPI.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="WindowsAPI.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WindowsAPI.cpp">
+      <Filter>00.MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>99.Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="CommonFunction.cpp">
+      <Filter>99.Utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="20240327.cpp">
+      <Filter>9999.Comments</Filter>
+    </None>
+  </ItemGroup>
+</Project>
