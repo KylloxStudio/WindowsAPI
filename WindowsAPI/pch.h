@@ -6,6 +6,11 @@
 #include "Types.h"
 #include "CommonFunction.h"
 
+#pragma comment(linker, "/entry:wWinMainCRTStartup /subsystem:console")
+
+#include <Windows.h>
+#include <windowsx.h>
+
 #include <iostream>
 #include <algorithm>
 
@@ -20,3 +25,4 @@ using namespace std;
 
 extern HINSTANCE _hInstance;
 extern HWND _hWnd;
+extern POINT _mousePos;
