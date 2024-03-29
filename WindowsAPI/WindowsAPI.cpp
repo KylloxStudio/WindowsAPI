@@ -3,6 +3,7 @@
 
 #include "pch.h"
 #include "WindowsAPI.h"
+#include "Game.h"
 
 #define MAX_LOADSTRING 100
 
@@ -30,12 +31,29 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
         return FALSE;
     }
 
-    MSG msg;
-    // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
+    Game game;
+    game.Init(_hWnd);
+
+    uint64 prevTick = 0;
+
+    MSG msg = {};
+    while (msg.message != WM_QUIT)
     {
-        TranslateMessage(&msg);
-        DispatchMessage(&msg);
+        if (::PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+        {
+            ::TranslateMessage(&msg);
+            ::DispatchMessage(&msg);
+        }
+        else
+        {
+            uint64 curTick = ::GetTickCount64();
+            if (curTick - prevTick >= GET_SINGLE(TimeManager)->GetDeltaTime())
+            {
+                game.Update();
+                game.Render();
+                prevTick = curTick;
+            }
+        }
     }
 
     return (int)msg.wParam;
@@ -108,90 +126,15 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //  WM_DESTROY  - 종료 메시지를 게시하고 반환합니다.
 //
 //
-int gugudan = 1;
-bool isChasing = false;
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
-    case WM_MOUSEMOVE:
-        _mousePos.x = GET_X_LPARAM(lParam);
-        _mousePos.y = GET_Y_LPARAM(lParam);
-
-        ::InvalidateRect(_hWnd, NULL, true);
-        break;
-    case WM_KEYDOWN:
-        if (wParam == 'A')
-        {
-            isChasing = !isChasing;
-            printf("A 누름: %d\n", isChasing);
-        }
-
-        if (wParam == VK_RIGHT)
-        {
-            if (gugudan < 9)
-            {
-                gugudan++;
-                //LOG
-            }
-            printf("현재 단: %d\n", gugudan);
-        }
-        else if (wParam == VK_LEFT)
-        {
-            if (1 < gugudan)
-            {
-                gugudan--;
-            }
-            printf("현재 단: %d\n", gugudan);
-        }
-        break;
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
-
-            // ::Rectangle(hdc, 350, 350, 450, 450);
-            // ::Ellipse(hdc, 350, 350, 450, 450);
-
-            wchar_t mouseStr[128];
-            wsprintf(mouseStr, L"%d, %d", _mousePos.x, _mousePos.y);
-            ::TextOut(hdc, _mousePos.x, _mousePos.y, mouseStr, _tcsclen(mouseStr));
-
-            if (isChasing)
-            {
-                for (int i = 1; i <= 9; i++)
-                {
-                    wchar_t str[128];
-                    wsprintf(str, _T("%d * %d = %d"), gugudan, i, gugudan * i);
-                    ::TextOut(hdc, _mousePos.x, _mousePos.y + (i * 20), str, _tcsclen(str));
-                }
-            }
-            else
-            {
-                int x = 0;
-                int y = 0;
-                for (int i = 1; i <= 9; i++)
-                {
-                    for (int j = 1; j <= 9; j++)
-                    {
-                        if (i > 3)
-                        {
-                            x = -300;
-                            y = 200;
-                        }
-                        
-                        if (i > 6)
-                        {
-                            x = -600;
-                            y = 400;
-                        }
-
-                        wchar_t str[128];
-                        wsprintf(str, _T("%d * %d = %d"), i, j, i * j);
-                        ::TextOut(hdc, x + (i * 100), y + (j * 20), str, _tcsclen(str));
-                    }
-                }
-            }
             
             EndPaint(hWnd, &ps);
         }

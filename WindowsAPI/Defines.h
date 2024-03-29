@@ -10,3 +10,5 @@ public:										\
 		static ClassName instance;			\
 		return &instance;					\
 	}
+
+#define GET_SINGLE(ClassName) ClassName::GetInstance()
