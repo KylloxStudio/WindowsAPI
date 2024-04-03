@@ -1,5 +1,8 @@
 #pragma once
 
+#define SAFE_DELETE(p) { if(p) delete (p); (p) = NULL; }
+#define SAFE_DELETE_ARRAY(p) { if(p) delete[] (p); (p) = NULL; }
+
 #define DECLARE_SINGLE(ClassName)			\
 private:									\
 	ClassName() {}							\
@@ -12,3 +15,6 @@ public:										\
 	}
 
 #define GET_SINGLE(ClassName) ClassName::GetInstance()
+
+#define Input GET_SINGLE(InputManager)
+#define Time GET_SINGLE(TimeManager)

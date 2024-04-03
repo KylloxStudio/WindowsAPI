@@ -16,31 +16,41 @@ void Game::Init(HWND hwnd)
 	this->_hwnd = hwnd;
 	this->_hdc = ::GetDC(this->_hwnd);
 
-	::GetClientRect(_hwnd, &_rect);
-	_hdcBack = ::CreateCompatibleDC(_hdc);
-	_bmpBack = ::CreateCompatibleBitmap(_hdc, _rect.right, _rect.bottom);
-	HBITMAP prev = (HBITMAP)::SelectObject(_hdcBack, _bmpBack);
+	// 더블버퍼링
+	::GetClientRect(_hwnd, &_rect);											//윈도우핸들의 크기를 반환
+	_hdcBack = ::CreateCompatibleDC(_hdc);									//_hdc와 호환되는 화면 생성
+	_bmpBack = ::CreateCompatibleBitmap(_hdc, _rect.right, _rect.bottom);	//_hdc와 호환되는 비트맵 생성
+	HBITMAP prev = (HBITMAP)::SelectObject(_hdcBack, _bmpBack);				//_hdcBack에 _bmp 연결
 	::DeleteObject(prev);
 
-	GET_SINGLE(TimeManager)->Init();
+	Time->Init();
+	Input->Init(_hwnd);
+	GET_SINGLE(SceneManager)->Init();
+
+	GET_SINGLE(SceneManager)->LoadScene(SceneType::Dev1Scene);
 }
 
 void Game::Update()
 {
-	GET_SINGLE(TimeManager)->Update();
-
-	_x++;
+	Time->Update();
+	Input->Update();
+	GET_SINGLE(SceneManager)->Update();
 }
 
 void Game::Render()
 {
-	uint32 fps = GET_SINGLE(TimeManager)->GetFps();
-	float deltaTime = GET_SINGLE(TimeManager)->GetDeltaTime();
-	wstring timeStr = format(_T("FPS: ({0}), DeltaTime: ({1}) ms"), fps, static_cast<int32>(deltaTime * 1000));
+	// FPS 출력
+	uint32 fps = Time->GetFps();
+	float deltaTime = Time->GetDeltaTime();
+	wstring timeStr = format(_T("FPS: {0}, DeltaTime: {1} ms"), fps, static_cast<int32>(deltaTime * 1000));
 	::TextOut(_hdcBack, 0, 0, timeStr.c_str(), timeStr.length());
 
-	wstring str = _T("동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세");
-	::TextOut(_hdcBack, _x % 700, 50, str.c_str(), str.length());
+	// 마우스좌표 출력
+	POINT mousePos = Input->GetMousePos();
+	wstring str = format(_T("MousePos: {0}, {1}"), mousePos.x, mousePos.y);
+	::TextOut(_hdcBack, 0, 20, str.c_str(), str.length());
+
+	GET_SINGLE(SceneManager)->Render(_hdcBack);
 
 	::BitBlt(_hdc, 0, 0, _rect.right, _rect.bottom, _hdcBack, 0, 0, SRCCOPY);
 	::PatBlt(_hdcBack, 0, 0, _rect.right, _rect.bottom, WHITENESS);

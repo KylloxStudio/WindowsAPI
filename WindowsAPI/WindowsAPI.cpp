@@ -47,12 +47,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
         else
         {
             uint64 curTick = ::GetTickCount64();
-            if (curTick - prevTick >= GET_SINGLE(TimeManager)->GetDeltaTime())
-            {
-                game.Update();
-                game.Render();
-                prevTick = curTick;
-            }
+            game.Update();
+            game.Render();
+            prevTick = curTick;
+            //if (curTick - prevTick >= GET_SINGLE(TimeManager)->GetDeltaTime())
+            //{
+            //    game.Update();
+            //    game.Render();
+            //    prevTick = curTick;
+            //}
         }
     }
 

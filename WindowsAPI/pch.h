@@ -2,15 +2,19 @@
 
 #include "framework.h"
 
+//===========================================
+//		## WindowsAPI 커스텀 헤더 ##
+//===========================================
 #include "Defines.h"
 #include "Types.h"
 #include "CommonFunction.h"
+#include "Enums.h"
 
 #pragma comment(linker, "/entry:wWinMainCRTStartup /subsystem:console")
 
-#include <Windows.h>
-#include <windowsx.h>
-
+//===========================================
+//		## C++ 관련 함수 ##
+//===========================================
 #include <iostream>
 #include <algorithm>
 
@@ -18,14 +22,27 @@
 #include <tchar.h>
 #include <format>
 
+//===========================================
+//		## 자료 구조 ##
+//===========================================
 #include <vector>
 #include <unordered_map>
 #include <map>
 
-#include "TimeManager.h"
-
+//===========================================
+//		## NAMESPACE ##
+//===========================================
 using namespace std;
 
-extern HINSTANCE _hInstance;
-extern HWND _hWnd;
-extern POINT _mousePos;
+//===========================================
+//		## 싱글톤 ##
+//===========================================
+#include "TimeManager.h"	// Time
+#include "InputManager.h"	// Input
+#include "SceneManager.h"	// Scene
+
+//===========================================
+//		## 전역 변수 ##
+//===========================================
+extern HINSTANCE _hInstance;	// instance => 프로그램(인스턴스) 객체
+extern HWND _hWnd;				// wnd => 윈도우 객체
