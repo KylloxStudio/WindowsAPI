@@ -82,3 +82,31 @@ Vector2::Vector2()
 	this->x = 0.0f;
 	this->y = 0.0f;
 }
+
+float Vector2::Dot(Vector2 other)
+{
+	return x * other.x + y * other.y;
+}
+
+float Vector2::Dot(Vector2 origin, Vector2 other)
+{
+	return origin.x * other.x + origin.y * other.y;
+}
+
+Vector2 Vector2::Reflect(Vector2 normal)
+{
+	Vector2 normalizedNormal = normal.Normalize();
+	Vector2 normalizedOrigin = this->Normalize();
+	float tempLength = this->Dot(normalizedNormal * -1) * 2;
+
+	return normalizedOrigin + normalizedNormal * tempLength;
+}
+
+Vector2 Vector2::Reflect(Vector2 origin, Vector2 normal)
+{
+	Vector2 normalizedNormal = normal.Normalize();
+	Vector2 normalizedOrigin = origin.Normalize();
+	float tempLength = Dot(origin, normalizedNormal * -1) * 2;
+
+	return normalizedOrigin + normalizedNormal * tempLength;
+}

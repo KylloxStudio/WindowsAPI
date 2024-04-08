@@ -24,4 +24,10 @@ struct Vector2
 
 	Vector2(float x, float y);
 	Vector2();
+
+	float Dot(Vector2 other);
+	float Dot(Vector2 origin, Vector2 other);
+
+	Vector2 Reflect(Vector2 normal);
+	Vector2 Reflect(Vector2 origin, Vector2 normal);
 };

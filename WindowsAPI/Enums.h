@@ -4,5 +4,7 @@ enum class SceneType
 {
 	None,
 	Dev1Scene,
-	Dev2Scene
+	Dev2Scene,
+	PongGameScene,
+	BrickGameScene
 };

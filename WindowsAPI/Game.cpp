@@ -43,12 +43,12 @@ void Game::Render()
 	uint32 fps = Time->GetFps();
 	float deltaTime = Time->GetDeltaTime();
 	wstring timeStr = format(_T("FPS: {0}, DeltaTime: {1} ms"), fps, static_cast<int32>(deltaTime * 1000));
-	::TextOut(_hdcBack, 0, 0, timeStr.c_str(), timeStr.length());
+	::TextOut(_hdcBack, 5, 5, timeStr.c_str(), timeStr.length());
 
 	// 마우스좌표 출력
 	POINT mousePos = Input->GetMousePos();
 	wstring str = format(_T("MousePos: {0}, {1}"), mousePos.x, mousePos.y);
-	::TextOut(_hdcBack, 0, 20, str.c_str(), str.length());
+	::TextOut(_hdcBack, 5, 25, str.c_str(), str.length());
 
 	GET_SINGLE(SceneManager)->Render(_hdcBack);
 

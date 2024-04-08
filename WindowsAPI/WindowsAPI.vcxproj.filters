@@ -82,6 +82,9 @@
     <ClInclude Include="CenterRect.h">
       <Filter>99.Utils\Types</Filter>
     </ClInclude>
+    <ClInclude Include="PongGameScene.h">
+      <Filter>02.Scenes\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsAPI.rc">
@@ -138,6 +141,9 @@
     </ClCompile>
     <ClCompile Include="CenterRect.cpp">
       <Filter>99.Utils\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="PongGameScene.cpp">
+      <Filter>02.Scenes\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
