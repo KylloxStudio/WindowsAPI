@@ -12,23 +12,7 @@ public:
 	virtual void Release() override;
 
 private:
-	CenterRect _player1;
-	CenterRect _player2;
-	CenterRect _player1Wall;
-	CenterRect _player2Wall;
-	CenterRect _ball;
-
-	CenterRect _topWall;
-	CenterRect _bottomWall;
-	
-	Vector2 _player1Dirc;
-	Vector2 _player2Dirc;
-	Vector2 _ballDirc;
-
-	float _ballSpeed;
-
-	int _player1Score;
-	int _player2Score;
-
-	bool _isGameStarted;
+	CenterRect _player;
+	Vector2 _playerDirc;
+	Vector2 _targetPos = { -1, -1 };
 };
