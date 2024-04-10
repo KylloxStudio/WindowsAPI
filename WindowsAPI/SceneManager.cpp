@@ -4,6 +4,7 @@
 #include "Dev1Scene.h"
 #include "Dev2Scene.h"
 #include "PongGameScene.h"
+#include "BrickGameScene.h"
 
 void SceneManager::Init()
 {
@@ -35,6 +36,9 @@ void SceneManager::Update()
 		break;
 	case SceneType::PongGameScene:
 		newScene = new PongGameScene();
+		break;
+	case SceneType::BrickGameScene:
+		newScene = new BrickGameScene();
 		break;
 	default:
 		break;

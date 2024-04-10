@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BrickGameScene.h" />
     <ClInclude Include="CenterRect.h" />
     <ClInclude Include="CommonFunction.h" />
     <ClInclude Include="Defines.h" />
@@ -182,6 +183,7 @@
     <ClCompile Include="20240403.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="BrickGameScene.cpp" />
     <ClCompile Include="CenterRect.cpp" />
     <ClCompile Include="CommonFunction.cpp" />
     <ClCompile Include="Dev1Scene.cpp" />

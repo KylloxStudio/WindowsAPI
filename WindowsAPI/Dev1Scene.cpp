@@ -23,6 +23,11 @@ void Dev1Scene::Update()
 		GET_SINGLE(SceneManager)->LoadScene(SceneType::PongGameScene);
 	}
 
+	if (Input->GetKeyDown(KeyCode::B))
+	{
+		GET_SINGLE(SceneManager)->LoadScene(SceneType::BrickGameScene);
+	}
+
 	if (Input->GetKey(KeyCode::Left))
 	{
 		_playerDirc = Vector2(-1, 0);
