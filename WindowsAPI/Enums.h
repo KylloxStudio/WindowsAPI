@@ -8,3 +8,15 @@ enum class SceneType
 	PongGameScene,
 	BrickGameScene
 };
+
+enum class ColliderType
+{
+	None,
+	Box,
+	Circle
+};
+
+enum CollisionLayerType : uint8
+{
+	CLT_OBJECT
+};

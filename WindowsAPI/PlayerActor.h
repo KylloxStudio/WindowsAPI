@@ -1,11 +1,11 @@
 #pragma once
-#include "Scene.h"
+#include "Actor.h"
 
-class BrickGameScene : public Scene
+class PlayerActor : public Actor
 {
-	using base = Scene;
-
 public:
+	using base = Actor;
+
 	virtual void Init() override;
 	virtual void Update() override;
 	virtual void Render(HDC hdc) override;
@@ -28,7 +28,4 @@ private:
 	float _brickHeight;
 
 	float _ballSpeed;
-
-	int _score;
-	bool _isGameStarted;
 };

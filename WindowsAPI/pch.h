@@ -27,7 +27,9 @@
 //===========================================
 #include <vector>
 #include <unordered_map>
+#include <unordered_set>
 #include <map>
+#include <set>
 
 //===========================================
 //		## NAMESPACE ##
@@ -37,9 +39,10 @@ using namespace std;
 //===========================================
 //		## ½Ì±ÛÅæ ##
 //===========================================
-#include "TimeManager.h"	// Time
-#include "InputManager.h"	// Input
-#include "SceneManager.h"	// Scene
+#include "TimeManager.h"		// Time
+#include "InputManager.h"		// Input
+#include "SceneManager.h"		// Scene
+#include "CollisionManager.h"	// Collision
 
 //===========================================
 //		## Àü¿ª º¯¼ö ##

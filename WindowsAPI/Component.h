@@ -1,10 +1,10 @@
 #pragma once
 
 class Actor;
-class Scene
+class Component
 {
 protected:
-	vector<Actor*> _actors;
+	Actor* _owner = nullptr;
 
 public:
 	virtual void Init();
@@ -12,6 +12,6 @@ public:
 	virtual void Render(HDC hdc);
 	virtual void Release();
 
-	void SpawnActor(Actor* actor);
-	void DespawnActor(Actor* actor);
+	Actor* GetOwner() { return _owner; }
+	void SetOwner(Actor* owner) { _owner = owner; }
 };

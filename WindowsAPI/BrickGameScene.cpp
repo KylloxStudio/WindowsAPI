@@ -1,22 +1,45 @@
 #include "pch.h"
 #include "BrickGameScene.h"
+#include "PlayerActor.h"
+#include "BoxCollider.h"
 
 void BrickGameScene::Init()
 {
 	base::Init();
 
+	PlayerActor* player = new PlayerActor();
+	player->Init();
+	player->SetName("Player");
+
+	BoxCollider* collider = new BoxCollider();
+	collider->SetCollision(Shape::MakeCenterRect(500, 500, 150, 20));
+	player->AddComponent(collider);
+	player->SetBody(Shape::MakeCenterRect(500, 500, 150, 20));
+	this->SpawnActor(player);
+
 	_player = { Vector2(500, 500), 150, 20 };
 	_ball = { Vector2(500, 400), 20, 20 };
 
-	brickWidth = 100;
-	brickHeight = 25;
+	_brickWidth = 100;
+	_brickHeight = 25;
+	float paddingTop = 100;
 
-	_topWall = { Vector2(0, -50), 10000, 100 };
-	_bottomWall = { Vector2(0, 640), 10000, 100 };
-	_leftWall = { Vector2(-50, 0), 100, 10000 };
-	_rightWall = { Vector2(1120, 0), 100, 10000 };
+	for (int i = 0; i < _bricks.size(); i++)
+	{
+		if (i % 10 == 0)
+		{
+			paddingTop += _brickHeight;
+		}
 
-	_ballSpeed = 350.0f;
+		_bricks[i] = { Vector2((i % 10) * (int)_brickWidth + 85, paddingTop), _brickWidth, _brickHeight };
+	}
+
+	_topWall = { Vector2(0, -5), 10000, 10 };
+	_bottomWall = { Vector2(0, 720), 10000, 10 };
+	_leftWall = { Vector2(-5, 0), 10, 10000 };
+	_rightWall = { Vector2(1080, 0), 10, 10000 };
+
+	_ballSpeed = 500;
 	_score = 0;
 }
 
@@ -71,7 +94,7 @@ void BrickGameScene::Update()
 
 	RECT playerCollision = _player.ToRect();
 	RECT ballCollision = _ball.ToRect();
-
+	
 	if (::IntersectRect(&collision, &playerCollision, &ballCollision))
 	{
 		int collisionWidth = collision.right - collision.left;
@@ -102,6 +125,44 @@ void BrickGameScene::Update()
 			{
 				cout << "왼쪽 -> 오른쪽" << endl;
 				_ballDirc.x = -1;
+			}
+		}
+	}
+
+	for (CenterRect brick : _bricks)
+	{
+		RECT brickCollision = brick.ToRect();
+		if (::IntersectRect(&collision, &ballCollision, &brickCollision))
+		{
+			int collisionWidth = collision.right - collision.left;
+			int collisionHeight = collision.bottom - collision.top;
+			if (collisionHeight < collisionWidth)
+			{
+				if (collision.top == ballCollision.top)
+				{
+					cout << "아래 -> 위" << endl;
+					_ballDirc.y = -1;
+				}
+
+				if (collision.bottom == ballCollision.bottom)
+				{
+					cout << "위 -> 아래" << endl;
+					_ballDirc.y = 1;
+				}
+			}
+			else
+			{
+				if (collision.left == ballCollision.left)
+				{
+					cout << "오른쪽 -> 왼쪽" << endl;
+					_ballDirc.x = 1;
+				}
+
+				if (collision.right == ballCollision.right)
+				{
+					cout << "왼쪽 -> 오른쪽" << endl;
+					_ballDirc.x = -1;
+				}
 			}
 		}
 	}
@@ -141,8 +202,13 @@ void BrickGameScene::Render(HDC hdc)
 	_leftWall.Render(hdc);
 	_rightWall.Render(hdc);
 
-	_player.Render(hdc);
+	//_player.Render(hdc);
 	_ball.Render(hdc);
+
+	for (int i = 0; i < _bricks.size(); i++)
+	{
+		_bricks[i].Render(hdc);
+	}
 }
 
 void BrickGameScene::Release()

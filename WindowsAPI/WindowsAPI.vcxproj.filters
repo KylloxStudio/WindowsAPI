@@ -26,6 +26,18 @@
     <Filter Include="99.Utils\Types">
       <UniqueIdentifier>{66dba61e-e804-4f33-9925-c89734d464fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Objects">
+      <UniqueIdentifier>{16bb99aa-da91-4c57-b4e4-f4ef4376d450}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Components">
+      <UniqueIdentifier>{3e2f32a6-1480-46e9-ae3f-5f3c6e6c130d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Components\Collider">
+      <UniqueIdentifier>{52667726-6f3d-4080-a67c-a52f774861d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Objects\Game">
+      <UniqueIdentifier>{2de1e0cc-2bff-463c-9dea-67d327a73b87}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -84,6 +96,27 @@
     </ClInclude>
     <ClInclude Include="PongGameScene.h">
       <Filter>02.Scenes\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="BrickGameScene.h">
+      <Filter>02.Scenes\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>03.Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>04.Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>04.Components\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxCollider.h">
+      <Filter>04.Components\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>01.Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerActor.h">
+      <Filter>03.Objects\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +177,27 @@
     </ClCompile>
     <ClCompile Include="PongGameScene.cpp">
       <Filter>02.Scenes\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="BrickGameScene.cpp">
+      <Filter>02.Scenes\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>03.Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>04.Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>04.Components\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxCollider.cpp">
+      <Filter>04.Components\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>01.Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerActor.cpp">
+      <Filter>03.Objects\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
