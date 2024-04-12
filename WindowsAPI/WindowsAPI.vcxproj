@@ -156,8 +156,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="BallActor.h" />
     <ClInclude Include="BoxCollider.h" />
+    <ClInclude Include="BrickActor.h" />
     <ClInclude Include="BrickGameScene.h" />
+    <ClInclude Include="BrickGameState.h" />
     <ClInclude Include="CenterRect.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="CollisionManager.h" />
@@ -171,7 +174,8 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="PlayerActor.h" />
+    <ClInclude Include="PaddleActor.h" />
+    <ClInclude Include="PlayerController.h" />
     <ClInclude Include="PongGameScene.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scene.h" />
@@ -180,6 +184,7 @@
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="Vector2.h" />
+    <ClInclude Include="WallActor.h" />
     <ClInclude Include="WindowsAPI.h" />
   </ItemGroup>
   <ItemGroup>
@@ -189,9 +194,15 @@
     <ClCompile Include="20240403.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="20240412.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="BallActor.cpp" />
     <ClCompile Include="BoxCollider.cpp" />
+    <ClCompile Include="BrickActor.cpp" />
     <ClCompile Include="BrickGameScene.cpp" />
+    <ClCompile Include="BrickGameState.cpp" />
     <ClCompile Include="CenterRect.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
@@ -207,12 +218,14 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="PlayerActor.cpp" />
+    <ClCompile Include="PaddleActor.cpp" />
+    <ClCompile Include="PlayerController.cpp" />
     <ClCompile Include="PongGameScene.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Vector2.cpp" />
+    <ClCompile Include="WallActor.cpp" />
     <ClCompile Include="WindowsAPI.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -35,7 +35,7 @@
     <Filter Include="04.Components\Collider">
       <UniqueIdentifier>{52667726-6f3d-4080-a67c-a52f774861d7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Objects\Game">
+    <Filter Include="03.Objects\BrickGame">
       <UniqueIdentifier>{2de1e0cc-2bff-463c-9dea-67d327a73b87}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -115,8 +115,23 @@
     <ClInclude Include="CollisionManager.h">
       <Filter>01.Managers</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerActor.h">
-      <Filter>03.Objects\Game</Filter>
+    <ClInclude Include="PaddleActor.h">
+      <Filter>03.Objects\BrickGame</Filter>
+    </ClInclude>
+    <ClInclude Include="BallActor.h">
+      <Filter>03.Objects\BrickGame</Filter>
+    </ClInclude>
+    <ClInclude Include="WallActor.h">
+      <Filter>03.Objects\BrickGame</Filter>
+    </ClInclude>
+    <ClInclude Include="BrickActor.h">
+      <Filter>03.Objects\BrickGame</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerController.h">
+      <Filter>03.Objects\BrickGame</Filter>
+    </ClInclude>
+    <ClInclude Include="BrickGameState.h">
+      <Filter>02.Scenes\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -196,8 +211,26 @@
     <ClCompile Include="CollisionManager.cpp">
       <Filter>01.Managers</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerActor.cpp">
-      <Filter>03.Objects\Game</Filter>
+    <ClCompile Include="PaddleActor.cpp">
+      <Filter>03.Objects\BrickGame</Filter>
+    </ClCompile>
+    <ClCompile Include="BallActor.cpp">
+      <Filter>03.Objects\BrickGame</Filter>
+    </ClCompile>
+    <ClCompile Include="20240412.cpp">
+      <Filter>9999.Comments</Filter>
+    </ClCompile>
+    <ClCompile Include="WallActor.cpp">
+      <Filter>03.Objects\BrickGame</Filter>
+    </ClCompile>
+    <ClCompile Include="BrickActor.cpp">
+      <Filter>03.Objects\BrickGame</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerController.cpp">
+      <Filter>03.Objects\BrickGame</Filter>
+    </ClCompile>
+    <ClCompile Include="BrickGameState.cpp">
+      <Filter>02.Scenes\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

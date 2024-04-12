@@ -26,8 +26,8 @@ void CollisionManager::Update()
 					c2->GetOwner()->OnCollisionEnter(c2, c1);
 				}
 
-				c1->GetOwner()->OnCollisionStay(c1, c2);
-				c2->GetOwner()->OnCollisionStay(c2, c1);
+				/*c1->GetOwner()->OnCollisionStay(c1, c2);
+				c2->GetOwner()->OnCollisionStay(c2, c1);*/
 			}
 			else
 			{

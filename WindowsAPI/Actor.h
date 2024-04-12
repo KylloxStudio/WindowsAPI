@@ -15,9 +15,9 @@ public:
 	virtual void Render(HDC hdc);
 	virtual void Release();
 
-	void OnCollisionEnter(Collider* collider, Collider* other);
-	void OnCollisionStay(Collider* collider, Collider* other);
-	void OnCollisionExit(Collider* collider, Collider* other);
+	virtual void OnCollisionEnter(Collider* collider, Collider* other);
+	virtual void OnCollisionStay(Collider* collider, Collider* other);
+	virtual void OnCollisionExit(Collider* collider, Collider* other);
 
 	void AddComponent(Component* component);
 	void RemoveComponent(Component* component);

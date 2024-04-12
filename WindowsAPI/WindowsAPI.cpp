@@ -17,6 +17,7 @@ ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
+void                SetWindowSize(int x, int y, int width, int height);
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nCmdShow)
 {
@@ -113,10 +114,23 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
       return FALSE;
    }
 
+   SetWindowSize(0, 0, WIN_SIZE_X, WIN_SIZE_Y);
    ShowWindow(_hWnd, nCmdShow);
    UpdateWindow(_hWnd);
 
    return TRUE;
+}
+
+void SetWindowSize(int x, int y, int width, int height)
+{
+    RECT rc;
+    rc.left = 0;
+    rc.top = 0;
+    rc.right = width;
+    rc.bottom = height;
+
+    ::AdjustWindowRect(&rc, WS_CAPTION | WS_SYSMENU, false);
+    ::SetWindowPos(_hWnd, NULL, x, y, rc.right - rc.left, rc.bottom - rc.top, SWP_NOZORDER | SWP_NOMOVE);
 }
 
 //

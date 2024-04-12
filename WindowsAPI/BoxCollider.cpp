@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "BoxCollider.h"
+#include "Actor.h"
 
 BoxCollider::BoxCollider() : Collider(ColliderType::Box)
 {
