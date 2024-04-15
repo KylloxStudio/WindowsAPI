@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Actor.h"
+#include "Scene.h"
 #include "Component.h"
 #include "Collider.h"
 
@@ -13,6 +14,12 @@ void Actor::Update()
 	for (Component* component : _components)
 	{
 		component->Update();
+	}
+
+	if (!_isEnable)
+	{
+		Scene* curScene = GET_SINGLE(SceneManager)->GetCurrentScene();
+		curScene->DespawnActor(this);
 	}
 }
 

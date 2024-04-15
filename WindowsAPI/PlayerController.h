@@ -8,10 +8,12 @@ public:
 	void Init(PaddleActor* paddle, BallActor* ball);
 	void Update();
 
+	void SetCanBallController(bool canBallControl) { _canBallControl = canBallControl; }
+
 private:
 	PaddleActor* _paddle;
 	BallActor* _ball;
 
-	float _paddleMoveSpeed;
-	float _ballMoveSpeed;
+	bool _canBallControl = false;
+	float _paddleMoveSpeed = 500.0f;
 };

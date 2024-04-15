@@ -1,5 +1,7 @@
 #include "pch.h"
+#include "Scene.h"
 #include "BallActor.h"
+#include "BrickActor.h"
 #include "BoxCollider.h"
 
 void BallActor::Init()
@@ -73,26 +75,50 @@ void BallActor::SetDirection(Vector2 dirc)
 
 void BallActor::OnCollisionEnter(Collider* collider, Collider* other)
 {
+	base::OnCollisionEnter(collider, other);
+
+	RECT myRect = static_cast<BoxCollider*>(collider)->GetCollision().ToRect();
+	RECT otherRect = static_cast<BoxCollider*>(other)->GetCollision().ToRect();
+
+	string otherName = other->GetOwner()->GetName();
+	if (otherName == "Paddle")
+	{
+		Bounce(myRect, otherRect);
+	}
+
+	if (otherName == "Brick")
+	{
+		BrickActor* brickActor = dynamic_cast<BrickActor*>(other->GetOwner());
+		if (brickActor == nullptr)
+		{
+			return;
+		}
+
+		Bounce(myRect, otherRect);
+		brickActor->SetEnable(false);
+	}
+}
+
+void BallActor::Bounce(RECT myRect, RECT otherRect)
+{
 	RECT temp = {};
-	RECT ballRect = static_cast<BoxCollider*>(collider)->GetCollision().ToRect();
-	ballRect.left -= 1;
-	ballRect.top -= 1;
-	ballRect.right += 1;
-	ballRect.bottom += 1;
-	RECT paddleRect = static_cast<BoxCollider*>(other)->GetCollision().ToRect();
-	if (::IntersectRect(&temp, &ballRect, &paddleRect))
+	myRect.left -= 1;
+	myRect.top -= 1;
+	myRect.right += 1;
+	myRect.bottom += 1;
+	if (::IntersectRect(&temp, &myRect, &otherRect))
 	{
 		int collisionWidth = temp.right - temp.left;
 		int collisionHeight = temp.bottom - temp.top;
 		if (collisionHeight < collisionWidth)
 		{
-			if (temp.top == ballRect.top)
+			if (temp.top == myRect.top)
 			{
 				_moveDirc.y = -_moveDirc.y;
 				_body.pos.y += temp.bottom - temp.top;
 			}
 
-			if (temp.bottom == ballRect.bottom)
+			if (temp.bottom == myRect.bottom)
 			{
 				_moveDirc.y = -_moveDirc.y;
 				_body.pos.y += temp.top - temp.bottom;
@@ -100,15 +126,15 @@ void BallActor::OnCollisionEnter(Collider* collider, Collider* other)
 		}
 		else
 		{
-			if (temp.left == ballRect.left)
+			if (temp.left == myRect.left)
 			{
-				_moveDirc.x = -_moveDirc.y;
+				_moveDirc.x = -_moveDirc.x;
 				_body.pos.x += temp.right - temp.left;
 			}
 
-			if (temp.right == ballRect.right)
+			if (temp.right == myRect.right)
 			{
-				_moveDirc.x = -_moveDirc.y;
+				_moveDirc.x = -_moveDirc.x;
 				_body.pos.x += temp.left - temp.right;
 			}
 		}

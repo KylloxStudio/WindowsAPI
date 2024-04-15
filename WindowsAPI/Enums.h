@@ -9,6 +9,13 @@ enum class SceneType
 	BrickGameScene
 };
 
+enum class GameState
+{
+	None,
+	Wait,
+	Play
+};
+
 enum class ColliderType
 {
 	None,

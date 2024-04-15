@@ -9,6 +9,8 @@ protected:
 	string _name;
 	vector<Component*> _components;
 
+	bool _isEnable = true;
+
 public:
 	virtual void Init();
 	virtual void Update();
@@ -27,4 +29,7 @@ public:
 
 	string GetName() { return _name; }
 	void SetName(string name) { _name = name; }
+
+	bool GetEnable() { return _isEnable; }
+	void SetEnable(bool enable) { _isEnable = enable; }
 };

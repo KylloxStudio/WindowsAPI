@@ -38,6 +38,9 @@
     <Filter Include="03.Objects\BrickGame">
       <UniqueIdentifier>{2de1e0cc-2bff-463c-9dea-67d327a73b87}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05.Resources">
+      <UniqueIdentifier>{5e257ce7-fac0-447a-8f29-da2427908d07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -132,6 +135,18 @@
     </ClInclude>
     <ClInclude Include="BrickGameState.h">
       <Filter>02.Scenes\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceBase.h">
+      <Filter>05.Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>01.Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2Int.h">
+      <Filter>99.Utils\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>05.Resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -231,6 +246,18 @@
     </ClCompile>
     <ClCompile Include="BrickGameState.cpp">
       <Filter>02.Scenes\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceBase.cpp">
+      <Filter>05.Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>01.Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2Int.cpp">
+      <Filter>99.Utils\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>05.Resources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

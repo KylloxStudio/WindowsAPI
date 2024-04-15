@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Vector2.h"
+#include "Vector2Int.h"
 #include "CenterRect.h"
 
 using int8 = __int8;
