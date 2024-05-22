@@ -41,6 +41,15 @@
     <Filter Include="05.Resources">
       <UniqueIdentifier>{5e257ce7-fac0-447a-8f29-da2427908d07}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Objects\MoleGame">
+      <UniqueIdentifier>{2e99f403-52f2-431b-8cb4-207da1c2b1ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06.UI">
+      <UniqueIdentifier>{718fd385-ce2a-42d0-ac1a-7d57fd7503d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06.UI\Game">
+      <UniqueIdentifier>{d7ccdc0b-e58d-40e6-9800-7bcae3095044}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -133,9 +142,6 @@
     <ClInclude Include="PlayerController.h">
       <Filter>03.Objects\BrickGame</Filter>
     </ClInclude>
-    <ClInclude Include="BrickGameState.h">
-      <Filter>02.Scenes\Game</Filter>
-    </ClInclude>
     <ClInclude Include="ResourceBase.h">
       <Filter>05.Resources</Filter>
     </ClInclude>
@@ -147,6 +153,48 @@
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>05.Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraComponent.h">
+      <Filter>04.Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>05.Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>05.Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Flipbook.h">
+      <Filter>05.Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>06.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>06.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>06.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Panel.h">
+      <Filter>06.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TestPanel.h">
+      <Filter>06.UI\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="TilemapActor.h">
+      <Filter>03.Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>01.Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomManager.h">
+      <Filter>01.Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Tilemap.h">
+      <Filter>05.Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="DefineContents.h">
+      <Filter>99.Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -244,9 +292,6 @@
     <ClCompile Include="PlayerController.cpp">
       <Filter>03.Objects\BrickGame</Filter>
     </ClCompile>
-    <ClCompile Include="BrickGameState.cpp">
-      <Filter>02.Scenes\Game</Filter>
-    </ClCompile>
     <ClCompile Include="ResourceBase.cpp">
       <Filter>05.Resources</Filter>
     </ClCompile>
@@ -257,6 +302,45 @@
       <Filter>99.Utils\Types</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
+      <Filter>05.Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
+      <Filter>04.Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>05.Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>05.Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Flipbook.cpp">
+      <Filter>05.Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>06.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>06.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>06.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Panel.cpp">
+      <Filter>06.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="TestPanel.cpp">
+      <Filter>06.UI\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="TilemapActor.cpp">
+      <Filter>03.Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomManager.cpp">
+      <Filter>01.Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>01.Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Tilemap.cpp">
       <Filter>05.Resources</Filter>
     </ClCompile>
   </ItemGroup>

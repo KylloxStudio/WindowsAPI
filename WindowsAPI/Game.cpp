@@ -28,7 +28,7 @@ void Game::Init(HWND hwnd)
 	GET_SINGLE(SceneManager)->Init();
 	GET_SINGLE(CollisionManager)->Init();
 
-	GET_SINGLE(SceneManager)->LoadScene(SceneType::BrickGameScene);
+	GET_SINGLE(SceneManager)->LoadScene(SceneType::Dev1Scene);
 }
 
 void Game::Update()

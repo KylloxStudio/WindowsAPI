@@ -1,5 +1,4 @@
 #pragma once
-
 enum class KeyCode
 {
 	LeftMouse = VK_LBUTTON,
@@ -15,10 +14,12 @@ enum class KeyCode
 	A = 'A',
 	S = 'S',
 	D = 'D',
-	B = 'B',
-	P = 'P',
 
-	Control = VK_CONTROL
+	P = 'P',
+	B = 'B',
+	M = 'M',
+
+	Control = VK_CONTROL,
 };
 
 enum class KeyState
@@ -59,6 +60,4 @@ private:
 	HWND _hwnd = {};
 	vector<KeyState> _states;
 	POINT _mousePos;
-
-
 };

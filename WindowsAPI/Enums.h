@@ -6,7 +6,8 @@ enum class SceneType
 	Dev1Scene,
 	Dev2Scene,
 	PongGameScene,
-	BrickGameScene
+	BrickGameScene,
+	MoleGameScene
 };
 
 enum class GameState
@@ -23,7 +24,32 @@ enum class ColliderType
 	Circle
 };
 
+//뒤에 둘수록 마지막에 그린다.
+enum class LayerType
+{
+	BackGround,
+	Object,
+
+	Character,
+
+	End
+};
+
 enum CollisionLayerType : uint8
 {
-	CLT_OBJECT
+	CLT_DEFAULT,
+	CLT_CREATURE,
+	CLT_ITEM
+};
+
+enum class BrickGameState
+{
+	None,
+	Wait,
+	Play
+};
+
+enum class MoleGameState
+{
+	None,
 };

@@ -1,10 +1,14 @@
 #include "pch.h"
 #include "Scene.h"
 #include "Actor.h"
+#include "UI.h"
 
 void Scene::Init()
 {
-
+	for (UI* ui : _uis)
+	{
+		ui->Init();
+	}
 }
 
 void Scene::Update()
@@ -14,49 +18,79 @@ void Scene::Update()
 		_actors[i]->Update();
 	}*/
 
-	for (Actor* actor : _actors)
+	for (const vector<Actor*> actors : _actors)
 	{
-		actor->Update();
+		for (Actor* actor : actors)
+		{
+			actor->Update();
+		}
+	}
+
+	for (UI* ui : _uis)
+	{
+		ui->Update();
 	}
 }
 
 void Scene::Render(HDC hdc)
 {
-	for (Actor* actor : _actors)
+	for (const vector<Actor*> actors : _actors)
 	{
-		actor->Render(hdc);
+		for (Actor* actor : actors)
+		{
+			actor->Render(hdc);
+		}
+	}
+
+	for (UI* ui : _uis)
+	{
+		ui->Render(hdc);
 	}
 }
 
 void Scene::Release()
 {
-	for (Actor* actor : _actors)
+	for (vector<Actor*>& actors : _actors)
 	{
-		actor->Release();
-		SAFE_DELETE(actor);
+		for (Actor* actor : actors)
+		{
+			actor->Release();
+			SAFE_DELETE(actor);
+		}
+		actors.clear();
 	}
 
-	_actors.clear();
+	for (UI* ui : _uis)
+	{
+		ui->Release();
+		SAFE_DELETE(ui);
+	}
+	_uis.clear();
+
+	GET_SINGLE(CollisionManager)->ClearCollider();
 }
 
 void Scene::SpawnActor(Actor* actor)
 {
 	if (actor == nullptr) return;
 
-	actor->Init();
-	_actors.push_back(actor);
+	_actors[actor->GetLayerInt()].push_back(actor);
 }
 
 void Scene::DespawnActor(Actor* actor)
 {
 	if (actor == nullptr) return;
 
-	auto findIt = find(_actors.begin(), _actors.end(), actor);
-	if (findIt != _actors.end())
+	vector<Actor*>& actors = _actors[actor->GetLayerInt()];
+
+	//삭제할 객체찾기
+	auto findIt = find(actors.begin(), actors.end(), actor);
+
+	if (findIt != actors.end())
 	{
 		(*findIt)->Release();
 		Actor* deleteActor = (*findIt);
 		SAFE_DELETE(deleteActor);
-		_actors.erase(findIt);
+		actors.erase(findIt);
 	}
 }

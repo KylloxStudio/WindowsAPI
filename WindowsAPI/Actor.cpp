@@ -64,13 +64,10 @@ void Actor::AddComponent(Component* component)
 	component->SetOwner(this);
 	component->Init();
 	_components.push_back(component);
-
 }
 
 void Actor::RemoveComponent(Component* component)
 {
-	if (component == nullptr) return;
-
 	auto findIt = find(_components.begin(), _components.end(), component);
 	if (findIt != _components.end())
 	{

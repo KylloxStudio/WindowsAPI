@@ -155,12 +155,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="CircleCollider.h" />
+    <ClInclude Include="CreatureActor.h" />
+    <ClInclude Include="DefineContents.h" />
+    <ClInclude Include="Flipbook.h" />
+    <ClInclude Include="FlipbookActor.h" />
+    <ClInclude Include="HammerActor.h" />
+    <ClInclude Include="Image.h" />
+    <ClInclude Include="MoleActor.h" />
+    <ClInclude Include="MoleGameScene.h" />
+    <ClInclude Include="Panel.h" />
+    <ClInclude Include="PlayerHammerController.h" />
+    <ClInclude Include="RandomManager.h" />
+    <ClInclude Include="Sound.h" />
+    <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="SpriteActor.h" />
+    <ClInclude Include="TestPanel.h" />
+    <ClInclude Include="UI.h" />
     <ClInclude Include="Actor.h" />
     <ClInclude Include="BallActor.h" />
     <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="BrickActor.h" />
     <ClInclude Include="BrickGameScene.h" />
-    <ClInclude Include="BrickGameState.h" />
+    <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="CenterRect.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="CollisionManager.h" />
@@ -184,6 +203,8 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Tilemap.h" />
+    <ClInclude Include="TilemapActor.h" />
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="Vector2.h" />
@@ -192,6 +213,24 @@
     <ClInclude Include="WindowsAPI.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="CircleCollider.cpp" />
+    <ClCompile Include="CreatureActor.cpp" />
+    <ClCompile Include="Flipbook.cpp" />
+    <ClCompile Include="FlipbookActor.cpp" />
+    <ClCompile Include="HammerActor.cpp" />
+    <ClCompile Include="Image.cpp" />
+    <ClCompile Include="MoleActor.cpp" />
+    <ClCompile Include="MoleGameScene.cpp" />
+    <ClCompile Include="Panel.cpp" />
+    <ClCompile Include="PlayerHammerController.cpp" />
+    <ClCompile Include="RandomManager.cpp" />
+    <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="SpriteActor.cpp" />
+    <ClCompile Include="TestPanel.cpp" />
+    <ClCompile Include="UI.cpp" />
     <ClCompile Include="20240329.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -206,7 +245,7 @@
     <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="BrickActor.cpp" />
     <ClCompile Include="BrickGameScene.cpp" />
-    <ClCompile Include="BrickGameState.cpp" />
+    <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="CenterRect.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
@@ -230,6 +269,8 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Tilemap.cpp" />
+    <ClCompile Include="TilemapActor.cpp" />
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector2Int.cpp" />
