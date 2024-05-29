@@ -1,6 +1,10 @@
 #pragma once
 #include "Scene.h"
+
 class Panel;
+class MapToolController;
+class CreatureController;
+
 class Dev1Scene : public Scene
 {
 	using Super = Scene;
@@ -15,5 +19,7 @@ private:
 	void LoadResource();
 
 protected:
+	MapToolController* _mapToolController = nullptr;
+	CreatureController* _creatureController = nullptr;
 };
 

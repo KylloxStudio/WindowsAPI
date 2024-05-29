@@ -35,7 +35,6 @@ public:
 public:
 	void SetState(CreatureState state);
 	void ChangeDirection(eCreatureDirection dir);
-	void UpdateInput();
 
 public:
 	void UpdateIdle();

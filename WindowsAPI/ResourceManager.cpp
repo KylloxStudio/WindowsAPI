@@ -6,13 +6,11 @@
 #include "Flipbook.h"
 #include "Sound.h"
 #include "Tilemap.h"
-
 void ResourceManager::Init()
 {
 	_resources.clear();
 	_resourcePath = L"../Resources/";
 }
-
 void ResourceManager::Release()
 {
 	for (auto& item : _resources)
@@ -129,6 +127,22 @@ Tilemap* ResourceManager::LoadTileMap(const wstring& key, const wstring& path)
 
 	Tilemap* tileMap = new Tilemap();
 	tileMap->LoadFile(path);
+	_resources[key] = tileMap;
+
+	return tileMap;
+}
+
+Tilemap* ResourceManager::CreateTileMap(const wstring& key, Vector2Int mapSize, int tileSize, vector<vector<Tile>> tiles)
+{
+	if (_resources.contains(key))
+	{
+		return GetTileMap(key);
+	}
+
+	Tilemap* tileMap = new Tilemap();
+	tileMap->SetMapSize(mapSize);
+	tileMap->SetTileSize(tileSize);
+	tileMap->SetTiles(tiles);
 	_resources[key] = tileMap;
 
 	return tileMap;

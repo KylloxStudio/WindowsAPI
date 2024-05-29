@@ -11,69 +11,108 @@
 #include "Sprite.h"
 #include "CircleCollider.h"
 #include "TestPanel.h"
+#include "TilemapActor.h"
+#include "Tilemap.h"
+#include "MapToolTilemapActor.h"
+#include "MapToolController.h"
+#include "CreatureController.h"
 
 void Dev1Scene::Init()
 {
 	LoadResource();
 
-	GET_SINGLE(SoundManager)->Play(L"BGM_Dev1Scene", true);
-
-
-	SpriteActor* background = nullptr;
 	{
-		background = new SpriteActor();
-		Sprite* sprite = Resource->GetSprite(L"S_Background");
-		background->SetSprite(sprite);
-		background->SetBody(Shape::MakeCenterRectLTWH(0, 0, sprite->GetSize().x, sprite->GetSize().y));
-		background->Init();
-		this->SpawnActor(background);
+		for (int i = 0; i <= 12; i++)
+		{
+			{
+				wchar_t keyName[128];
+				swprintf_s(keyName, L"T_Pocket%d", i);
+
+				wchar_t valueName[128];
+				swprintf_s(valueName, L"TileStudy/pocket_%d.bmp", i);
+
+				Resource->LoadTexture(keyName, valueName);
+			}
+
+			{
+				wchar_t keyName[128];
+				swprintf_s(keyName, L"S_Pocket%d", i);
+
+				wchar_t textureKeyName[128];
+				swprintf_s(textureKeyName, L"T_Pocket%d", i);
+
+				Resource->CreateSprite(keyName, Resource->GetTexture(textureKeyName));
+			}
+		}
+
+	}
+
+	{
+		Vector2Int mapSize = Vector2Int(10, 10);
+		vector<vector<Tile>> tiles;
+		for (int height = 0; height < mapSize.y; height++)
+		{
+			vector<Tile> tilesDummy;
+			for (int width = 0; width < mapSize.x; width++)
+			{
+				Tile tile;
+				tile.value = 0;
+				tilesDummy.push_back(tile);
+			}
+			tiles.push_back(tilesDummy);
+		}
+
+		Resource->CreateTileMap(L"TM_Test", mapSize, 88, tiles);
+	}
+
+	_mapToolController = new MapToolController();
+
+	{
+		MapToolTilemapActor* actor = new MapToolTilemapActor();
+		actor->SetTileMap(Resource->GetTileMap(L"TM_Test"));
+		{
+			vector<Sprite*> sprites;
+			for (int i = 0; i <= 12; i++)
+			{
+				wchar_t keyName[128];
+				swprintf_s(keyName, L"S_Pocket%d", i);
+				sprites.push_back(Resource->GetSprite(keyName));
+			}
+
+			actor->SetTileSprites(sprites);
+		}
+		actor->SetLayer(LayerType::BackGround);
+		actor->Init();
+
+		_mapToolController->Init(actor);
+
+		this->SpawnActor(actor);
+	}
+
+
+	_creatureController = new CreatureController();
+
+	{
+		CreatureActor* actor = new CreatureActor();
+		actor->SetLayer(LayerType::Character);
+		actor->SetName("Player");
+		actor->SetBody(Shape::MakeCenterRect(300, 300, 0, 0));
+		actor->Init();
+		_creatureController->Init(actor);
+		this->SpawnActor(actor);
 	}
 
 	{
 		CreatureActor* actor = new CreatureActor();
-
-		actor->SetName("Player");
-		actor->SetFlipbook(Resource->GetFlipbook(L"FB_PlayerDownIdle"));
-		actor->SetPos(Vector2(WIN_SIZE_X / 2, WIN_SIZE_Y / 2));
-
-		{
-			CameraComponent* component = new CameraComponent();
-			component->SetLTWH(background->GetSprite());
-			component->Init();
-			actor->AddComponent(component);
-		}
-		{
-			CircleCollider* component = new CircleCollider();
-			component->SetCollision(Vector2::Zero(), 50);
-			component->Init();
-			actor->AddComponent(component);
-		}
-
+		actor->SetLayer(LayerType::Character);
+		actor->SetName("Friend");
+		actor->SetBody(Shape::MakeCenterRect(500, 300, 0, 0));
 		actor->Init();
 		this->SpawnActor(actor);
 	}
 
-	{
-		FlipbookActor* actor = new FlipbookActor();
 
-		actor->SetName("Dummy");
-		{
-			BoxCollider* component = new BoxCollider();
-			component->SetCollision(Shape::MakeCenterRect(0, 0, 50, 50));
-			component->Init();
-			actor->AddComponent(component);
-		}
-		actor->SetFlipbook(Resource->GetFlipbook(L"FB_PlayerRightIdle"));
-		actor->SetPos(Vector2(WIN_SIZE_X / 2 + 100, WIN_SIZE_Y / 2));
-
-		actor->Init();
-		this->SpawnActor(actor);
-	}
-
-	//{
-	//	TestPanel* testPanel = new TestPanel();
-	//	_uis.push_back(testPanel);
-	//}
+	this->SetCameraPos(Vector2(WIN_SIZE_X / 2, WIN_SIZE_Y / 2));
 
 	Super::Init();
 
@@ -90,27 +129,9 @@ void Dev1Scene::Update()
 {
 	Super::Update();
 
-	if (Input->GetKey(KeyCode::Control) && Input->GetKeyDown(KeyCode::RightMouse))
-	{
-		GET_SINGLE(SceneManager)->LoadScene(SceneType::Dev2Scene);
-	}
-
-	if (Input->GetKeyDown(KeyCode::P))
-	{
-		GET_SINGLE(SceneManager)->LoadScene(SceneType::PongGameScene);
-	}
-
-	if (Input->GetKeyDown(KeyCode::B))
-	{
-		GET_SINGLE(SceneManager)->LoadScene(SceneType::BrickGameScene);
-	}
-
-	if (Input->GetKeyDown(KeyCode::M))
-	{
-		GET_SINGLE(SceneManager)->LoadScene(SceneType::MoleGameScene);
-	}
+	_mapToolController->Update();
+	_creatureController->Update();
 }
-
 void Dev1Scene::Release()
 {
 	Super::Release();
@@ -122,7 +143,8 @@ void Dev1Scene::LoadResource()
 	//  ## Background
 	//----------------------------------
 	{
-		Texture* texture = Resource->LoadTexture(L"T_Background" , L"CameraStudy/backround_supermario.bmp");
+		Texture* texture = Resource->LoadTexture(L"T_Background"
+			, L"CameraStudy/backround_supermario.bmp");
 		Resource->CreateSprite(L"S_Background", texture);
 	}
 
@@ -131,7 +153,9 @@ void Dev1Scene::LoadResource()
 	//  ## PlayerDown Texture
 	//----------------------------------
 	{
-		Texture* texture = Resource->LoadTexture(L"T_PlayerDown" , L"FilpbookTest/PlayerDown.bmp" , RGB(128, 128, 128));
+		Texture* texture = Resource->LoadTexture(L"T_PlayerDown"
+			, L"FilpbookTest/PlayerDown.bmp"
+			, RGB(128, 128, 128));
 
 		{
 			FlipbookInfo flipbookInfo = {};
@@ -173,7 +197,9 @@ void Dev1Scene::LoadResource()
 	//  ## PlayerUp Texture
 	//----------------------------------
 	{
-		Texture* texture = Resource->LoadTexture(L"T_PlayerUp" , L"FilpbookTest/PlayerUp.bmp" , RGB(128, 128, 128));
+		Texture* texture = Resource->LoadTexture(L"T_PlayerUp"
+			, L"FilpbookTest/PlayerUp.bmp"
+			, RGB(128, 128, 128));
 
 		{
 			FlipbookInfo flipbookInfo = {};
@@ -215,7 +241,9 @@ void Dev1Scene::LoadResource()
 	//  ## PlayerLeft Texture
 	//----------------------------------
 	{
-		Texture* texture = Resource->LoadTexture(L"T_PlayerLeft" , L"FilpbookTest/PlayerLeft.bmp" , RGB(128, 128, 128));
+		Texture* texture = Resource->LoadTexture(L"T_PlayerLeft"
+			, L"FilpbookTest/PlayerLeft.bmp"
+			, RGB(128, 128, 128));
 
 		{
 			FlipbookInfo flipbookInfo = {};
@@ -256,7 +284,9 @@ void Dev1Scene::LoadResource()
 	//  ## PlayerRight Texture
 	//----------------------------------
 	{
-		Texture* texture = Resource->LoadTexture(L"T_PlayerRight" , L"FilpbookTest/PlayerRight.bmp" , RGB(128, 128, 128));
+		Texture* texture = Resource->LoadTexture(L"T_PlayerRight"
+			, L"FilpbookTest/PlayerRight.bmp"
+			, RGB(128, 128, 128));
 
 		{
 			FlipbookInfo flipbookInfo = {};

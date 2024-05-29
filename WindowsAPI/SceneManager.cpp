@@ -3,14 +3,19 @@
 #include "Scene.h"
 #include "Dev1Scene.h"
 #include "Dev2Scene.h"
-#include "PongGameScene.h"
 #include "BrickGameScene.h"
-
+#include "MoleGameScene.h"
 void SceneManager::Init()
 {
 
 }
-
+void SceneManager::Render(HDC hdc)
+{
+	if (_scene)
+	{
+		_scene->Render(hdc);
+	}
+}
 void SceneManager::Update()
 {
 	if (_scene)
@@ -18,12 +23,23 @@ void SceneManager::Update()
 		_scene->Update();
 	}
 
+
 	if (_nextSceneType == SceneType::None)
 	{
 		return;
 	}
 
+	//--------------------------------------------
+	//		Scene Change
+	//--------------------------------------------
+	if (_scene)
+	{
+		_scene->Release();
+	}
+
 	Scene* newScene = nullptr;
+
+	//씬마다 새롭게 만들어준다.
 	switch (_nextSceneType)
 	{
 	case SceneType::None:
@@ -34,11 +50,11 @@ void SceneManager::Update()
 	case SceneType::Dev2Scene:
 		newScene = new Dev2Scene();
 		break;
-	case SceneType::PongGameScene:
-		newScene = new PongGameScene();
-		break;
 	case SceneType::BrickGameScene:
 		newScene = new BrickGameScene();
+		break;
+	case SceneType::MoleGameScene:
+		newScene = new MoleGameScene();
 		break;
 	default:
 		break;
@@ -49,14 +65,6 @@ void SceneManager::Update()
 	_sceneType = _nextSceneType;
 	_nextSceneType = SceneType::None;
 	newScene->Init();
-}
-
-void SceneManager::Render(HDC hdc)
-{
-	if (_scene)
-	{
-		_scene->Render(hdc);
-	}
 }
 
 void SceneManager::Release()

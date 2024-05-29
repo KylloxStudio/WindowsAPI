@@ -196,6 +196,39 @@
     <ClInclude Include="DefineContents.h">
       <Filter>99.Utils</Filter>
     </ClInclude>
+    <ClInclude Include="CircleCollider.h">
+      <Filter>04.Components\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="HammerActor.h">
+      <Filter>03.Objects\MoleGame</Filter>
+    </ClInclude>
+    <ClInclude Include="MoleActor.h">
+      <Filter>03.Objects\MoleGame</Filter>
+    </ClInclude>
+    <ClInclude Include="MoleGameScene.h">
+      <Filter>03.Objects\MoleGame</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHammerController.h">
+      <Filter>03.Objects\MoleGame</Filter>
+    </ClInclude>
+    <ClInclude Include="MapToolTilemapActor.h">
+      <Filter>03.Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="CreatureActor.h">
+      <Filter>03.Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="FlipbookActor.h">
+      <Filter>03.Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteActor.h">
+      <Filter>03.Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="MapToolController.h">
+      <Filter>03.Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="CreatureController.h">
+      <Filter>03.Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsAPI.rc">
@@ -342,6 +375,39 @@
     </ClCompile>
     <ClCompile Include="Tilemap.cpp">
       <Filter>05.Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleCollider.cpp">
+      <Filter>04.Components\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="HammerActor.cpp">
+      <Filter>03.Objects\MoleGame</Filter>
+    </ClCompile>
+    <ClCompile Include="MoleActor.cpp">
+      <Filter>03.Objects\MoleGame</Filter>
+    </ClCompile>
+    <ClCompile Include="MoleGameScene.cpp">
+      <Filter>03.Objects\MoleGame</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHammerController.cpp">
+      <Filter>03.Objects\MoleGame</Filter>
+    </ClCompile>
+    <ClCompile Include="MapToolTilemapActor.cpp">
+      <Filter>03.Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="CreatureActor.cpp">
+      <Filter>03.Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="FlipbookActor.cpp">
+      <Filter>03.Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteActor.cpp">
+      <Filter>03.Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="MapToolController.cpp">
+      <Filter>03.Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="CreatureController.cpp">
+      <Filter>03.Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

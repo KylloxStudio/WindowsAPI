@@ -1,5 +1,4 @@
 #pragma once
-
 class ResourceBase;
 class Texture;
 class Sprite;
@@ -7,11 +6,11 @@ class Flipbook;
 struct FlipbookInfo;
 class Sound;
 class Tilemap;
+class Tile;
 
 class ResourceManager
 {
 	DECLARE_SINGLE(ResourceManager);
-
 public:
 	void Init();
 	void Release();
@@ -30,8 +29,9 @@ public:
 
 	Tilemap* GetTileMap(const wstring& key);
 	Tilemap* LoadTileMap(const wstring& key, const wstring& path);
-
+	Tilemap* CreateTileMap(const wstring& key, Vector2Int mapSize, int tileSize, vector<vector<Tile>> tiles);
 private:
 	wstring _resourcePath;
 	map<wstring, ResourceBase*> _resources;
 };
+
